@@ -1,0 +1,46 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+
+.title {
+    text-align: center;
+    font-style: oblique;
+}
+
+form {
+    width: 400px;
+    padding: 50px;
+    border: 5px solid #e8ebff;
+    background: #cdeaff;
+    color: #341e47;
+}
+
+.col-sm-2.col-form-label {
+    width: 100%;
+    font-weight: bolder;
+}
+
+input.form-control {
+    width: 120% ;
+}
+
+.btn {
+    width: 48%;
+}
+
+.btn.btn-primary {
+    padding: 6px;
+}
+
+.btn + .btn {
+    margin-left: 10px;
+}
+
+.error {
+    color: #f68888;
+    font-weight: 600;
+    font-style: italic;
+}
