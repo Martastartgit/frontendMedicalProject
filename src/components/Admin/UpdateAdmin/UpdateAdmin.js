@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, {useState} from 'react';
+import {Redirect, useParams} from "react-router-dom";
+import {useForm} from "react-hook-form";
 
-import { registration } from "../../services";
-import './Register.css';
+import {updateAdmin} from "../../../services";
 
-export const Register = () => {
-    const [isSuccess, setSuccess] = useState(false);
+export const UpdateAdmin = (props) => {
+    const token = localStorage.getItem('access_token');
+
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const {id} = useParams();
+
+    const [isSuccess, setSuccess] = useState(false);
+
 
     const onClick = () => {
         window.location.reload();
@@ -17,20 +23,26 @@ export const Register = () => {
     }
 
     const formSubmit = async (data) => {
-        console.log(data);
-        await registration(data);
+        await updateAdmin(id, data, token)
 
         setSuccess(true);
 
         localStorage.setItem('name', data.name)
 
+        alert('Дані змінено успішно')
+
     }
 
+    if (isSuccess) {
+        return (
+            <Redirect to={`/admin/${id}`}/>
+        )
+    }
 
     return (
         <div className={'wrap'}>
             <form onSubmit={handleSubmit(formSubmit)}>
-                <h1 className={'title'}>Реєстрація</h1>
+                <h1 className={'title'}>Зміна даних</h1>
                 <div>
                     <label htmlFor="inputName" className="col-sm-2 col-form-label">Ім'я:</label>
                     <div className="col-sm-10">
@@ -50,10 +62,11 @@ export const Register = () => {
                                     message: `Ім'я перевищує ліміт символів`
                                 }
                             })}
+                            defaultValue={props.name}
                         />
                         <br/>
                         {errors.name &&
-                            <span className={'error'}>{errors.name && errors.name.message}</span>
+                        <span className={'error'}>{errors.name && errors.name.message}</span>
                         }
                     </div>
                 </div>
@@ -76,10 +89,11 @@ export const Register = () => {
                                     message: `Прізвище перевищує ліміт символів`
                                 }
                             })}
+                            defaultValue={props.surname}
                         />
                         <br/>
                         {errors.surname &&
-                           <span className={'error'}>{errors.surname && errors.surname.message}</span>
+                        <span className={'error'}>{errors.surname && errors.surname.message}</span>
                         }
                     </div>
                 </div>
@@ -98,50 +112,21 @@ export const Register = () => {
                                     message: 'Не вірний адрес електронної пошти'
                                 }
                             })}
-                            placeholder='email@example.com'
+                            defaultValue={props.email}
                         />
                         <br/>
                         {errors.email &&
-                            <span className={'error'}>{errors.email && errors.email.message}</span>
-                        }
-                    </div>
-                </div>
-                <div>
-                    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Пароль:</label>
-                    <div className="col-sm-10">
-                        <input
-                            type='password'
-                            name='password'
-                            className='form-control'
-                            id='inputPassword'
-                            {...register('password',{
-                                ...validators,
-                                pattern: {
-                                    value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-                                    message: 'Слабкий пароль'
-                                }
-                            })}
-                            placeholder='password'
-
-                        />
-                        <br/>
-                        {errors.password &&
-                        <span className={'error'}>{errors.password && errors.password.message}</span>
+                        <span className={'error'}>{errors.email && errors.email.message}</span>
                         }
                     </div>
                 </div>
                 <input type='button' onClick={onClick} defaultValue='Очистити форму' className='regBtn btn btn-primary'/>
                 <input type='submit' defaultValue='Відправити' className='regBtn btn btn-success'/>
 
-
             </form>
-            {isSuccess &&
-                <div className="alert alert-success" role="alert">
-                    <p>Реєстрацію завершено успішно!</p>
-                    <p>На Вашу електронну пошту відправлено лист з підтвердженням емейлу.</p>
-                </div>
-            }
+
         </div>
 
     )
+
 }

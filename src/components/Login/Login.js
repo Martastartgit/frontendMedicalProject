@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import './Login.css';
 import { login } from "../../services";
@@ -8,6 +8,8 @@ import { login } from "../../services";
 export const Login = () => {
     const [isSuccess, setSuccess] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const name = localStorage.getItem('name');
 
     const onClick = () => {
         window.location.reload();
@@ -18,16 +20,19 @@ export const Login = () => {
     }
 
     const formSubmit = async (data) => {
-        console.log(data);
         let newVar = await login(data);
 
         if (newVar.access_token) {
-            console.log(newVar.access_token);
             setSuccess(true)
         }
 
         localStorage.setItem('access_token', newVar.access_token)
         localStorage.setItem('refresh_token', newVar.refresh_token)
+        localStorage.setItem('id', newVar._id)
+
+        if (!name) {
+            localStorage.setItem('name', newVar.name)
+        }
 
     }
 
@@ -88,8 +93,9 @@ export const Login = () => {
                         }
                     </div>
                 </div>
-                <input type='button' onClick={onClick} defaultValue='Очистити форму' className='btn btn-primary'/>
-                <input type='submit' defaultValue='Відправити' className='btn btn-success'/>
+                <Link to={`/change_password`} className='login btn btn-warning'>Забули пароль</Link>
+                <input type='button' onClick={onClick} defaultValue='Очистити форму' className='login btn btn-primary'/>
+                <input type='submit' defaultValue='Відправити' className='login btn btn-success'/>
             </form>
         </div>
    )

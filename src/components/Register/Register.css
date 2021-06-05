@@ -31,11 +31,12 @@ input.form-control {
     width: 48%;
 }
 
-.btn.btn-primary {
+.regBtn.btn.btn-primary{
     padding: 6px;
+    margin-right: 10px;
 }
 
-.btn + .btn {
+regBtn.btn + regBtn.btn {
     margin-left: 10px;
 }
 

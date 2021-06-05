@@ -28,13 +28,11 @@ input.form-control {
 
 .btn {
     width: 48%;
+    margin-bottom: 15px;
 }
 
-.btn.btn-primary {
+.login.btn.btn-primary {
     padding: 6px;
-}
-
-.btn + .btn {
     margin-left: 10px;
 }
 

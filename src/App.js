@@ -3,25 +3,19 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import './App.css';
 
-import {Confirmation} from "./helper-components/EmailConfirmer/EmailConfirmer";
-import {Header} from "./components/Header/Header";
-import {Login} from "./components/Login/Login";
-import {Logout} from "./components/Logout/Logout";
-import {Register} from "./components/Register/Register";
+import MainHeader from "./components/MainHeader/MainHeader";
+import Admin from "./components/Admin/Admin";
+
 
 function App() {
   return (
       <BrowserRouter>
-          <Switch>
-              <Route exact path='/' component={ Header }/>
-              <Route path='/login' component={ Login }/>
-              <Route path='/logout' component={ Logout }/>
-              <Route path='/register' component={ Register }/>
-              <Route path='/confirm/:token' component={ Confirmation }/>
-          </Switch>
+         <MainHeader/>
 
+         <Switch>
+             <Route path={`/admin/:id`} component={ Admin }/>
+         </Switch>
       </BrowserRouter>
-
   );
 }
 

@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    border-bottom: 5px solid lightslategray;
+    background-color: cadetblue;
+}
+.navWrap {
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+}
