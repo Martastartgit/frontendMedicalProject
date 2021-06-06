@@ -8,7 +8,7 @@ import {Logout} from "../Logout/Logout";
 import {Login} from "../Login/Login";
 import {Register} from "../Register/Register";
 import {PasswordReset} from "../ChangePassword/PasswordReset";
-import Admin from "../Admin/Admin";
+import Admin from "../Admin/FullAdmin/Admin";
 
 function MainHeader() {
 

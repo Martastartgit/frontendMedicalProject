@@ -71,3 +71,17 @@ export const deleteAdmin = async (id, token) => {
         alert(JSON.stringify(e.response.data, null, 2))
     }
 }
+
+export const getAdminHistory = async (id, token) => {
+    try {
+        const response = await axios.get(`${ config.API_URL }/admin/history/${id}`,{
+            headers: {
+                'Authorization': token
+            }
+        });
+
+        return response.data
+    } catch (e) {
+        alert(JSON.stringify(e.response.data, null, 2))
+    }
+}

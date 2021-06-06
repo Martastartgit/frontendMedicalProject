@@ -38,7 +38,7 @@ export const Login = () => {
 
     if (isSuccess) {
         return (
-            <Redirect to='/'/>
+            <Redirect to={'/'}/>
         )
     }
 
@@ -97,6 +97,7 @@ export const Login = () => {
                 <input type='button' onClick={onClick} defaultValue='Очистити форму' className='login btn btn-primary'/>
                 <input type='submit' defaultValue='Відправити' className='login btn btn-success'/>
             </form>
+
         </div>
    )
 }

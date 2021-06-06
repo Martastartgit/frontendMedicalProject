@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { registration } from "../../services";
 import './Register.css';
+import {ModalWindow} from "../../helper-components/ModalWindow";
 
 export const Register = () => {
     const [isSuccess, setSuccess] = useState(false);
@@ -136,10 +137,13 @@ export const Register = () => {
 
             </form>
             {isSuccess &&
-                <div className="alert alert-success" role="alert">
-                    <p>Реєстрацію завершено успішно!</p>
-                    <p>На Вашу електронну пошту відправлено лист з підтвердженням емейлу.</p>
-                </div>
+                <ModalWindow>
+                    <div className="alert alert-success" role="alert">
+                        <p>Реєстрацію завершено успішно!</p>
+                        <p>На Вашу електронну пошту відправлено лист з підтвердженням емейлу.</p>
+                    </div>
+                </ModalWindow>
+
             }
         </div>
 

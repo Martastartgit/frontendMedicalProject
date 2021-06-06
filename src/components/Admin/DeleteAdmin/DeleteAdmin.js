@@ -1,28 +1,29 @@
 import React, {useEffect, useState} from 'react'
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 
 import {deleteAdmin} from "../../../services";
+import './DeleteAdmin.css';
+import {ModalWindow} from "../../../helper-components/ModalWindow";
 
 export const DeleteAdmin = () => {
     const [isDeleted, setIsDeleted] = useState(false);
 
-    useEffect(()=> {
-        const token = localStorage.getItem('access_token');
-        const id = localStorage.getItem('id');
-        async function deleteData () {
-            // await deleteAdmin(id, token)
-            //
-            // localStorage.removeItem('access_token');
-            // localStorage.removeItem('refresh_token');
-            // localStorage.removeItem('name');
-            // localStorage.removeItem('id');
+    const id = localStorage.getItem('id');
+    const token = localStorage.getItem('access_token');
 
-            setIsDeleted(true)
+    let history = useHistory();
 
-        }
-        deleteData()
+    async function deleteData () {
+        await deleteAdmin(id, token)
 
-    }, [] );
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('name');
+        localStorage.removeItem('id');
+
+        setIsDeleted(true)
+
+    }
 
     if (isDeleted) {
         return (
@@ -30,10 +31,18 @@ export const DeleteAdmin = () => {
         )
     }
 
-    return (
-        <>
+    function handleChange() {
+        history.goBack();
+    }
 
-        </>
+    return (
+        <ModalWindow>
+            <div>
+                <h3>Ви дійсно хочете видалити акаунт?</h3>
+                <button onClick={handleChange} className="delete btn btn-secondary">Ні</button>
+                <button onClick={deleteData} className="delete btn btn-primary">Так</button>
+            </div>
+        </ModalWindow>
 
     )
 }
