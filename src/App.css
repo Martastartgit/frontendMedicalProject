@@ -1,6 +1,14 @@
-/*.App {*/
-/*  text-align: center;*/
-/*}*/
+.App {
+    background-image: url("../src/background/image.jpg");
+    height: 1000px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+a {
+    text-decoration: none!important;
+}
 
 /*.App-logo {*/
 /*  height: 40vmin;*/

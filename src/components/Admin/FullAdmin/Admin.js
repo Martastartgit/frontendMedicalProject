@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 
-import {AdminCart} from "../AdminCart/AdminCart";
+import {AdminCart} from "../AdminCart";
 import {admin} from "../../../services";
-import {Header} from "../../Header/Header";
+import {Header} from "../../Header";
 
 function Admin() {
 

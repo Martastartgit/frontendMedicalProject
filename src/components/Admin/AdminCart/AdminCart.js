@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link, Route, Switch, useRouteMatch} from "react-router-dom";
 
-import {AdminHistory} from "../AdminHistory/AdminHistory";
-import {DeleteAdmin} from "../DeleteAdmin/DeleteAdmin";
-import {UpdateAdmin} from "../UpdateAdmin/UpdateAdmin";
+import {AdminHistory} from "../AdminHistory";
+import {DeleteAdmin} from "../DeleteAdmin";
+import {UpdateAdmin} from "../UpdateAdmin";
 
 export const AdminCart = (item) => {
     const { name, surname } = item.item.value;

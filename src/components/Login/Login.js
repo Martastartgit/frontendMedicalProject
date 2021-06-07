@@ -38,7 +38,7 @@ export const Login = () => {
 
     if (isSuccess) {
         return (
-            <Redirect to={'/'}/>
+            <Redirect to={'/admin/site'}/>
         )
     }
 

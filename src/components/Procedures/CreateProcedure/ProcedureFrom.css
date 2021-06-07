@@ -1,0 +1,7 @@
+.procedureForm {
+    width: 45%;
+}
+.procedureForm textarea {
+    width: 120%;
+    height: 250px;
+}
